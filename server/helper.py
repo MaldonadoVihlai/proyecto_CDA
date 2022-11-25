@@ -1,6 +1,4 @@
 import numpy as np
-import tensorflow as tf
-from pathlib import Path
 import streamlit as st
 import pandas as pd
 import category_encoders as ce
