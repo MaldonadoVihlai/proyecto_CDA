@@ -1,0 +1,5 @@
+streamlit
+keras 
+matplotlib
+seaborn
+category_encoders
