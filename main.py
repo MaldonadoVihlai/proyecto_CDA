@@ -66,13 +66,17 @@ with st.form("my_form"):
         complete_df = helper.clean_cars(
             data_df).clean_dataframe_original().append(processed_df)
         one_hot_encoding_df = helper.clean_cars(complete_df).encode_one_hot_dataframe().drop(
-            ['Model', 'Manufacturer', 'Color', 'Wheel__Left wheel'], axis=1)
-        one_hot_scaled_df = helper.apply_scaler(one_hot_encoding_df)
-        binary_encoding_df = helper.clean_cars(complete_df).encode_binary_dataframe()
+            ['Color', 'Wheel__Left wheel'], axis=1)
+        print(complete_df['Doors'].unique())
+        binary_encoding_df = helper.clean_cars(complete_df).encode_binary_dataframe().drop(
+        ['Manufacturer_6'], axis = 1)
+        binary_encoding_df = helper.apply_scaler(binary_encoding_df)
+        #one_hot_scaled_df = helper.apply_scaler(one_hot_encoding_df)
+        #TODO: fix doors.
         st.write("La TRM del día de hoy es: ", helper.get_currency_exchange())
         st.markdown(
             " ### De acuerdo al modelo el precio estimado en el que puedes vender tu vehículo es:")
-        st.write('$'+'{:20,.2f}'.format(model.predict(one_hot_scaled_df)
+        st.write('$'+'{:20,.2f}'.format(model.predict(binary_encoding_df)
                  [0]*helper.get_currency_exchange()))
         # st.write(one_hot_encoding_df.iloc[-1])
         # st.write(one_hot_encoding_df.columns)

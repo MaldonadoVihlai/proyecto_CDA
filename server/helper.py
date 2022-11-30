@@ -19,8 +19,9 @@ def load_model():
 
 def get_currency_exchange():
     today = date.today().strftime('%m/%d/%Y')
-    currency = requests.get(constants.URL_CURRENCY.format(today, today)).json()
-    currency = float(currency['data'][0]['last_close'].replace(',', ''))
+    #currency = requests.get(constants.URL_CURRENCY.format(today, today)).json()
+    #currency = float(currency['data'][0]['last_close'].replace(',', ''))
+    currency = 4680
     return currency
 
 
@@ -59,9 +60,11 @@ class clean_cars:
             "02-Mar": "2-3"})
         self.dataframe['Doors'] = self.dataframe['Doors'].replace(
             {'2-3': 1, '4-5': 2, '>5': 3})
+        self.dataframe['Doors'] = self.dataframe['Doors'].astype(int)
 
     def cleaning_colums(self):
         self.dataframe['Mileage'] = self.dataframe['Mileage'].astype(int)
+        self.dataframe['Doors'] = self.dataframe['Doors'].astype(int)
 
     # Se aplica codificación one-hot para las variables categóricas
     def one_hot_encoding(self):
