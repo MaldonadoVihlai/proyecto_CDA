@@ -5,3 +5,4 @@ seaborn
 category_encoders
 scikeras
 dill
+tensorflow
