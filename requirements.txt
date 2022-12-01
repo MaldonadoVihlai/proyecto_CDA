@@ -3,3 +3,5 @@ keras
 matplotlib
 seaborn
 category_encoders
+scikeras
+dill

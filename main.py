@@ -67,17 +67,23 @@ with st.form("my_form"):
             data_df).clean_dataframe_original().append(processed_df)
         one_hot_encoding_df = helper.clean_cars(complete_df).encode_one_hot_dataframe().drop(
             ['Color', 'Wheel__Left wheel'], axis=1)
-        print(complete_df['Doors'].unique())
+        
         binary_encoding_df = helper.clean_cars(complete_df).encode_binary_dataframe().drop(
         ['Manufacturer_6'], axis = 1)
         binary_encoding_df = helper.apply_scaler(binary_encoding_df)
+        data_to_predict = binary_encoding_df.iloc[-1:]
+        pd.set_option('display.max_columns', None)
+        pd.set_option('display.max_rows', None) 
+        #print(data_to_predict)
+        #print(model)
         #one_hot_scaled_df = helper.apply_scaler(one_hot_encoding_df)
-        #TODO: fix doors.
         st.write("La TRM del día de hoy es: ", helper.get_currency_exchange())
         st.markdown(
             " ### De acuerdo al modelo el precio estimado en el que puedes vender tu vehículo es:")
-        st.write('$'+'{:20,.2f}'.format(model.predict(binary_encoding_df)
-                 [0]*helper.get_currency_exchange()))
+        st.write('$'+'{:20,.2f}'.format(model.predict(data_to_predict)[0,0]*helper.get_currency_exchange()))
+        #st.write('$'+'{:20,.2f}'.format(model.predict(data_to_predict)
+                 #[-1]*helper.get_currency_exchange()))
+        #print(binary_encoding_df)
         # st.write(one_hot_encoding_df.iloc[-1])
         # st.write(one_hot_encoding_df.columns)
         #st.write("slider", slider_val, "checkbox", checkbox_val)

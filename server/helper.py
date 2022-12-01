@@ -33,8 +33,8 @@ def get_top_page_content(st):
         '**Nota**: Complete el siguiente formulario para estimar el precio de su vehículo')
 
 def apply_scaler(data_df):
-    min_max_scaler = MinMaxScaler()
-    X_binary_encoding_min_max_df = pd.DataFrame(min_max_scaler.fit_transform(data_df), columns = data_df.columns)
+    standard_scaler = StandardScaler()
+    X_binary_encoding_min_max_df = pd.DataFrame(standard_scaler.fit_transform(data_df), columns = data_df.columns)
     return X_binary_encoding_min_max_df
 
 class clean_cars:
@@ -64,6 +64,8 @@ class clean_cars:
 
     def cleaning_colums(self):
         self.dataframe['Mileage'] = self.dataframe['Mileage'].astype(int)
+        self.dataframe['Doors'] = self.dataframe['Doors'].replace({
+            "5 o más": 5})
         self.dataframe['Doors'] = self.dataframe['Doors'].astype(int)
 
     # Se aplica codificación one-hot para las variables categóricas
