@@ -65,6 +65,9 @@ class clean_cars:
     def cleaning_colums(self):
         self.dataframe['Mileage'] = self.dataframe['Mileage'].astype(int)
         self.dataframe['Doors'] = self.dataframe['Doors'].replace({
+            '2-3':2,
+            '4-5':4,
+            '6 o mas':6,
             "5 o más": 5})
         self.dataframe['Doors'] = self.dataframe['Doors'].astype(int)
 

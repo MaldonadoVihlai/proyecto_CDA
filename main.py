@@ -27,7 +27,7 @@ engine_volume_list = get_unique_list_by_column('Engine volume')
 cylinders_list = get_unique_list_by_column('Cylinders')
 gear_box_list = get_unique_list_by_column('Gear box type')
 drive_wheels_list = get_unique_list_by_column('Drive wheels')
-doors_list = ['2', '4', '5 o más']
+doors_list = ['2-3', '4-5', '6 o mas']
 wheel_list = ['Izquierdo', 'Derecho']
 color_list = get_unique_list_by_column('Color')
 
